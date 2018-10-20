@@ -3,17 +3,20 @@
 	translates, then formats translation into a single sentence.
 	
 """
+from googletrans import Translator
+translator = Translator()
 
 # file-input.py
-f = open('TestText.txt','r')
-message = f.read()
-print(message)
-f.close()
+def open_text(txt_name):
+	f = open(txt_name,'r')
+	message = f.read()
+	print(message)
+	f.close()
+	
+txt_name = 'TestText.txt'
 
 #if clicked, clicked item becomes variable Query, string
 
-from googletrans import Translator
-translator = Translator()
 #print slice_translation(str(translator.translate(message))) # test line
 
 
@@ -30,9 +33,8 @@ def find_pronunciation(s):    #give index of pronunciation
     return int(s.find(" pronunciation"))
     
 def slice_translation(s):    #give slice of string for substring of only translated word
-    return s[find_third_equals(s):find_pronunciation(s)-1]
-# Test function to slice    
-#print slice_translation("<Translated src=ko dest=ja text=hello there pronunciation=Kon'nichiwa.>")
+    return s[find_third_equals(s):find_pronunciation(s)-1]  
+# print slice_translation("<Translated src=ko dest=ja text=hello there pronunciation=Kon'nichiwa.>")
 # Slice functions above
 
 print slice_translation(str(translator.translate(message)))
